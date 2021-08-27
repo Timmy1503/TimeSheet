@@ -3,7 +3,7 @@ import { BaseRouter } from "./BaseRouter";
 import testRouter from "./TestRouter";
 import bodyParser = require("body-parser");
 import cors = require("cors");
-import userRouter from "./userRouter"
+
 
 class MasterRouter extends BaseRouter {
   constructor() {
@@ -31,7 +31,7 @@ class MasterRouter extends BaseRouter {
    protected init() {
     this.router.use("/test", testRouter);
     this.router.use("/services/app", authLoginRouter);
-    this.router.use("/TokenAuth", userRouter);
+    this.router.use("/TokenAuth", authLoginRouter);
   }
 }
 

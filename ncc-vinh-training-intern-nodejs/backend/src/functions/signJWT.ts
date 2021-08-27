@@ -1,10 +1,10 @@
 import jwt from "jsonwebtoken";
 import config from "../config/config";
 import logging from "../config/logging";
-import IUser from "../interfaces/userInterface";
+import {IUser} from "../interfaces/userInterface";
 
 const NAMESPACE = 'Auth';
-const signJWT = (user: IUser, callback: (error: Error | null, token: string | null) => void): void => {
+const signJWT = (user: IUser, callback: (error: Error | null, token: string | null, expirationTimeInSeconds: number | null) => void): void => {
     var timeSinceEpoch = new Date().getTime();
     var expirationTime = timeSinceEpoch + Number(config.server.token.expireTime) * 100000;
     var expirationTimeInSeconds = Math.floor(expirationTime / 1000);
@@ -24,15 +24,15 @@ const signJWT = (user: IUser, callback: (error: Error | null, token: string | nu
             },
             (error, token) => {
                 if (error) {
-                    callback(error, null);
+                    callback(error, null, null);
                 } else if (token) {
-                    callback(null, token);
+                    callback(null, token, expirationTimeInSeconds);
                 }
             }
         );
     } catch (error) {
         logging.error(NAMESPACE, error.message, error);
-        callback(error, null);
+        callback(error, null, null);
     }
 };
 

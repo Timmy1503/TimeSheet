@@ -46,6 +46,6 @@ export class Application {
   }
 }
 
-function loginRouter(arg: string, userRouter: any){
-  throw new Error("Function mot implemented");
-}
+// function loginRouter(arg: string, userRouter: any){
+//   throw new Error("Function mot implemented");
+// }

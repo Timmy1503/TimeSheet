@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from "express";
 import fs = require("fs");
 import { BaseRouter } from "./BaseRouter";
-
+import authService from "../services/AuthService";
 const fakeData = {
   result: {
     application: {
@@ -23,8 +23,7 @@ const fakeData = {
  * @description AuthLoginRouter
  */
 class AuthLoginRouter extends BaseRouter{
-
-
+  private authLogin = authService;
   constructor() {
     super();
     this.init();
@@ -40,6 +39,8 @@ class AuthLoginRouter extends BaseRouter{
         res.status(200).json(fakeData);
       }
     );
+
+    this.router.post("/Authenticate", this.authLogin.login);
   }
 }
 
