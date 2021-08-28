@@ -9,8 +9,8 @@ class TestServive implements ITestServiceInterface  {
 
   defaultMethod() {
     return {
-      text: `You've reached the ${this.constructor.name} default method`,
-      testRepository: this.testRepository.defaultMethod().text,
+      text: `You've reached the ${this.constructor.name} default method`
+      // testRepository: this.testRepository.defaultMethod().text,
     };
   }
 }

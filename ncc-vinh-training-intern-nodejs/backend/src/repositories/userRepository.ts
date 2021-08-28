@@ -19,5 +19,13 @@ class UserRepository extends BaseRepository<IUser>{
         }
     }
 
+
+    public async deleteUser(id: number){
+        const  user = await User.findOne({
+            id: id
+        });
+
+        await user.remove();
+    }
 }
 export = new UserRepository();

@@ -14,8 +14,8 @@ class UserRouter extends BaseRouter {
 
   protected init(){
     this.router.post("/Create", authen, this._service.createUser);
-    this.router.post("/Update", authen, this._service.update);
-    this.router.post("/Delete", authen, this._service.delete);
+    this.router.put("/Update", authen, this._service.update);
+    this.router.delete("/Delete", authen, this._service.delete);
   }
 }
 

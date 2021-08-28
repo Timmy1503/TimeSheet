@@ -89,7 +89,7 @@ class UserService implements IService{
     };
     
     delete = async (req: Request, res: Response, next: NextFunction) =>{
-        const deleteUser = req.query.id;
+        const id = req.query.id as string;
 
         let response: IResponse = {
             result: null,
@@ -99,6 +99,9 @@ class UserService implements IService{
             unAuthRequest: false,
             __abp: true
         }
+
+        await this._userRepository.deleteUser(parseInt(id));
+         res.status(200).json(response);
     }
 }
 export = new UserService();
